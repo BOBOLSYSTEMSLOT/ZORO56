@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ZORO56 - SENSASI JACKPOT TERDASYAT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- Jackpot Progresive --- */
+        .jackpot-box {
+            position: absolute;
+            top: 20px;
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid #ffcc00;
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            z-index: 20;
+            width: 85%;
+            max-width: 320px;
+            box-shadow: 0 0 20px #ffcc00;
+        }
+        .jackpot-amount { font-family: 'Orbitron', sans-serif; color: #ffcc00; font-size: 1.4rem; text-shadow: 0 0 10px #ff0000; }
+
+        /* --- Container Utama --- */
+        .container {
+            width: 85%; max-width: 380px; text-align: center;
+            padding: 45px 20px; border: 3px solid #ff0000;
+            border-radius: 30px; background: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 0 40px #ff0000, inset 0 0 20px #ff0000;
+            z-index: 10;
+        }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 12vw; color: #fff; text-shadow: 0 0 20px #ff0000; margin-bottom: 5px; }
+        @media (min-width: 480px) { .logo { font-size: 4rem; } }
+
+        /* --- Tombol DAFTAR Super Glow --- */
+        .btn-daftar {
+            display: block;
+            width: 100%;
+            padding: 22px;
+            margin: 20px 0;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            color: #fff;
+            background: linear-gradient(45deg, #ff0000, #ff6600, #ff0000);
+            background-size: 200% 200%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.9);
+            animation: glowAnim 1s infinite alternate, moveBg 3s linear infinite;
+        }
+
+        @keyframes glowAnim {
+            from { transform: scale(1); box-shadow: 0 0 15px #ff0000; }
+            to { transform: scale(1.05); box-shadow: 0 0 40px #ff6600; }
+        }
+
+        @keyframes moveBg { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        .btn-login { display: block; padding: 15px; text-decoration: none; color: #fff; border: 1px solid #444; border-radius: 12px; background: #1a1a1a; }
+
+        /* --- Stiker Mahjong --- */
+        .mahjong { position: absolute; top: -50px; font-size: 30px; z-index: 1; animation: fall linear infinite; opacity: 0.5; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+        /* --- Notif WD --- */
+        #wd-toast {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9); border-left: 5px solid #28a745;
+            padding: 12px; border-radius: 10px; font-size: 0.8rem; display: none; z-index: 100;
+            width: 80%; box-shadow: 0 0 20px rgba(0,255,0,0.3);
+        }
+    </style>
+</head>
+<body id="mainBody">
+
+    <div class="jackpot-box">
+        <div style="font-size: 0.6rem; color: #ffcc00; font-weight: bold;">GRAND JACKPOT PROGRESSIVE</div>
+        <div class="jackpot-amount" id="jackpot">IDR 852.140.700</div>
+    </div>
+
+    <div class="container" onclick="gasKan()">
+        <h1 class="logo">ZORO56</h1>
+        <p style="color: #00ff00; font-weight: bold; margin-bottom: 25px;">MENANG BERAPAPUN LUNAS BOSKU!</p>
+        <a href="https://link-daftar.com" class="btn-daftar">DAFTAR SEKARANG</a>
+        <a href="https://link-login.com" class="btn-login">LOGIN MEMBER</a>
+    </div>
+
+    <div id="wd-toast">
+        <span style="color: #28a745; font-weight: bold;">WD BERHASIL!</span><br>
+        <span id="wd-text">Member Anto*** Rp 1.500.000</span>
+    </div>
+
+    <audio id="musikGacor" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // 1. Jackpot Progresif
+        let jackpotVal = 852140700;
+        setInterval(() => {
+            jackpotVal += Math.floor(Math.random() * 55000) + 5000;
+            document.getElementById('jackpot').innerText = "IDR " + jackpotVal.toLocaleString('id-ID');
+        }, 2000);
+
+        // 2. WD Member
+        const members = ["Putra***", "Zoro***", "Gacor***", "Vina***", "Sultan***"];
+        const amounts = ["1.500.000", "5.000.000", "12.000.000", "750.000"];
+        setInterval(() => {
+            const toast = document.getElementById('wd-toast');
+            document.getElementById('wd-text').innerText = `Member ${members[Math.floor(Math.random()*members.length)]} Rp ${amounts[Math.floor(Math.random()*amounts.length)]}`;
+            toast.style.display = 'block';
+            setTimeout(() => toast.style.display = 'none', 3000);
+        }, 8000);
+
+        // 3. Mahjong Falls
+        setInterval(() => {
+            const m = document.createElement('div');
+            m.className = 'mahjong'; m.innerText = '🀄';
+            m.style.left = Math.random() * 90 + 'vw';
+            m.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.body.appendChild(m);
+            setTimeout(() => m.remove(), 7000);
+        }, 800);
+
+        // 4. LOGIKA SUARA CEWEK & MUSIK (FORCE)
+        let aktif = false;
+        function gasKan() {
+            if (aktif) return;
+            
+            // Putar Musik
+            const audio = document.getElementById('musikGacor');
+            audio.volume = 0.2;
+            audio.play().catch(e => console.log("Audio diblokir browser"));
+
+            // Suara Cewek
+            const cewek = new SpeechSynthesisUtterance("Ayo sayang, buruan daftar dan rasakan sensasi jackpot di zoro lima puluh enam!");
+            cewek.lang = 'id-ID';
+            cewek.pitch = 1.3; // Suara cewek lebih centil/tinggi
+            cewek.rate = 1.0;
+            
+            // Cari suara wanita jika ada
+            const voices = window.speechSynthesis.getVoices();
+            const female = voices.find(v => v.name.includes('Female') || v.name.includes('Indonesian'));
+            if(female) cewek.voice = female;
+
+            window.speechSynthesis.speak(cewek);
+            aktif = true;
+        }
+
+        // Pemicu Klik di mana saja
+        document.body.addEventListener('click', gasKan);
+        document.body.addEventListener('touchstart', gasKan);
+    </script>
+</body>
+</html>
