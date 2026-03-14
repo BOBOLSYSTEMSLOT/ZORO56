@@ -90,8 +90,8 @@
     <div class="container" onclick="gasKan()">
         <h1 class="logo">ZORO56</h1>
         <p style="color: #00ff00; font-weight: bold; margin-bottom: 25px;">MENANG BERAPAPUN LUNAS BOSKU!</p>
-        <a href="https://nagacuan44.xyz/register.php?ref=R618447" class="btn-daftar">DAFTAR SEKARANG</a>
-        <a href="https://nagacuan44.xyz/register.php?ref=R618447" class="btn-login">LOGIN MEMBER</a>
+        <a href="https://boni76.xyz/register.php/?ref=lewati" class="btn-daftar">DAFTAR SEKARANG</a>
+        <a href="https://boni76.xyz/register.php/?ref=lewati" class="btn-login">LOGIN MEMBER</a>
     </div>
 
     <div id="wd-toast">
@@ -131,30 +131,7 @@
             setTimeout(() => m.remove(), 7000);
         }, 800);
 
-        // 4. LOGIKA SUARA ROBOT CEWEK & MUSIK
-        let aktif = false;
-        function gasKan() {
-            if (aktif) return;
-            
-            // Putar Musik Latar
-            const audio = document.getElementById('musikGacor');
-            audio.volume = 0.15;
-            audio.play().catch(e => console.log("Interaksi diperlukan"));
-
-            // Suara Robot Cewek
-            const pesan = "Selamat datang di situs gacor zoro lima puluh enam! Segera daftar dan dapatkan jackpotnya sekarang juga sayang.";
-            const cewek = new SpeechSynthesisUtterance(pesan);
-            cewek.lang = 'id-ID';
-            cewek.pitch = 1.2; // Sedikit lebih tinggi agar terdengar seperti robot cewek yang ramah
-            cewek.rate = 0.9;  // Kecepatan bicara natural
-            
-            // Mengambil daftar suara yang tersedia di sistem browser
-            const voices = window.speechSynthesis.getVoices();
-            const indonesianVoice = voices.find(v => v.lang.includes('id-ID') || v.name.includes('Indonesian'));
-            if(indonesianVoice) cewek.voice = indonesianVoice;
-
-            window.speechSynthesis.speak(cewek);
-            aktif = true;
+        
         }
 
         // Pemicu Klik atau Sentuh di layar
